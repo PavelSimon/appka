@@ -1,0 +1,1 @@
+Školská aplikácia na odhalenie funčnosti databáz v IKT pre predmet DSIKT na FEIT Žilinská univerzia (feit.uniza.sk [feit.uniza.sk])
