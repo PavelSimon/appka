@@ -1,3 +1,5 @@
 env
 DSIKT*
 poznamky.txt
+__pycache__
+desktop.ini

@@ -1,4 +1,6 @@
 import streamlit as st
+import moduls
+
 # Magic commands implicitly `st.write()`
 ''' _This_ is some __Markdown__ '''
 a=3
