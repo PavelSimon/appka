@@ -1,18 +1,24 @@
 import streamlit as st
-from moduls.config import server, user, password, db_name
+from moduls.functions import connect_db
 
-print(server)
+def main():
+    st.set_page_config(
+        page_title="Krypto manager", 
+        layout="wide", 
+        page_icon="", 
+        initial_sidebar_state="collapsed")
+    conn = connect_db()
+        
 
-st.set_page_config(
-    page_title="Krypto manager", 
-    layout="wide", 
-    page_icon="", 
-    initial_sidebar_state="collapsed")
-    
+    st.title('Krypto evidencia')
+    st.sidebar.subheader('hfkdshgf')
+    col1,col2 = st.columns((3,1))
+    col1.header('Hlavné okno')
+    col1.subheader('nejaký text')
+    col2.header("Nastavte parametre")
 
-st.title('Krypto evidencia')
-st.sidebar.subheader('hfkdshgf')
-col1,col2 = st.columns((3,1))
-col1.header('Hlavné okno')
-col1.subheader('nejaký text')
-col2.header("Nastavte parametre")
+if __name__ == "__main__":
+    main()
+
+else:
+    print('spustené ako modul')
