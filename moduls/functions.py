@@ -9,3 +9,5 @@ def connect_db():
         database=db_name
     )     
     return conn
+
+#ďalšie funcie
