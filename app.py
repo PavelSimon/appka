@@ -2,6 +2,7 @@ import streamlit as st
 from moduls.functions import connect_db
 
 def main():
+    print('Apka beží')
     st.set_page_config(
         page_title="Krypto manager", 
         layout="wide", 
