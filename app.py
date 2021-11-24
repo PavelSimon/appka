@@ -18,8 +18,9 @@ def main():
     col1.subheader('nejaký text')
     col2.header("Nastavte parametre")
 
-    mycursor.execute("SELECT * FROM users")
+    mycursor.execute("SELECT id, prihlasovacie_meno FROM users")
     myresult = mycursor.fetchall()
+    print(myresult)
     for x in myresult:
         print(x)
         col1.write(x)
