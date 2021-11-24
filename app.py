@@ -18,12 +18,20 @@ def main():
     col1.subheader('nejaký text')
     col2.header("Nastavte parametre")
 
-    mycursor.execute("SELECT id, prihlasovacie_meno FROM users")
+    sql_text= 'SELECT pohyby.kedy as dátum, pohyby.mena1_id,pohyby.mena2_id,pohyby.za_kolko as "za koľko",pohyby.cena as "Jednotková cena",po.text as "Smer" FROM `pohyby`, `pomocna` po WHERE pohyby.akcia_id = po.id'
+
+    #pohyby = []
+    mycursor.execute(sql_text)
     myresult = mycursor.fetchall()
-    print(myresult)
+    #i = 0
     for x in myresult:
         print(x)
+        
         col1.write(x)
+        #pohyby.append(['datum']) = x[0] 
+    #     i += 1
+    # print(pohyby)
+
 
 if __name__ == "__main__":
     main()
