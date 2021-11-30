@@ -1,5 +1,5 @@
 import streamlit as st
-from moduls.functions import connect_db
+from moduls.db import connect_db
 
 def main():
     print('Apka beží')
