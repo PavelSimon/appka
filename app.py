@@ -18,7 +18,10 @@ def main():
     col1.subheader('nejaký text')
     col2.header("Nastavte parametre")
 
-    sql_text= 'SELECT pohyby.kedy as dátum, pohyby.mena1_id,pohyby.mena2_id,pohyby.za_kolko as "za koľko",pohyby.cena as "Jednotková cena",po.text as "Smer" FROM `pohyby`, `pomocna` po WHERE pohyby.akcia_id = po.id'
+    sql_text= 'SELECT pohyby.cena AS "Cena", pomocna.text AS "Smer",\
+        pohyby.za_kolko AS "Za koľko", kryptomeny_1.nazov AS "Mena 1", kryptomeny_2.nazov AS "Mena 2", kryptomeny_1.skratka AS skratka1, kryptomeny_2.skratka AS skratka2\
+        FROM pomocna, pohyby JOIN kryptomeny AS kryptomeny_1 ON kryptomeny_1.id = pohyby.mena1_id JOIN kryptomeny AS kryptomeny_2 ON kryptomeny_2.id = pohyby.mena2_id\
+        WHERE pohyby.akcia_id = pomocna.id ORDER BY pohyby.akcia_id'
 
     #pohyby = []
     mycursor.execute(sql_text)
