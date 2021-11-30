@@ -21,6 +21,7 @@ def main():
     col2.header("Nastavte parametre")
 
     df = data()    
+    
     col1.table(df)
 
 if __name__ == "__main__":
