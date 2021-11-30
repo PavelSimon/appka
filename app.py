@@ -1,8 +1,9 @@
 import streamlit as st
-import sqlalchemy as db
-from sqlalchemy.orm import aliased
-import pandas as pd
-from moduls.orm import conn, pohyby, users, kryptomeny, burzy, pomocna
+# import sqlalchemy as db
+# from sqlalchemy.orm import aliased
+# import pandas as pd
+# from moduls.orm import conn, pohyby, users, kryptomeny, burzy, pomocna
+from moduls.functions import data
 
 def main():
     print('Apka beží')
@@ -19,34 +20,7 @@ def main():
     col1.subheader('nejaký text')
     col2.header("Nastavte parametre")
 
-    mena1 = aliased(kryptomeny)
-    mena2 = aliased(kryptomeny)
-
-    query = db.select(
-        [pohyby.c.cena.label('Cena'),
-        pomocna.c.text.label('Smer'),
-        pohyby.c.za_kolko.label('Za koľko'), 
-        mena1.c.nazov.label('Mena 1'),
-        mena2.c.nazov.label('Mena 2'),
-        mena1.c.skratka,
-        mena2.c.skratka
-        ]
-        ).where(
-            pohyby.c.akcia_id==pomocna.c.id
-        ).join(
-            mena1, mena1.c.id == pohyby.c.mena1_id
-        ).join(
-            mena2, mena2.c.id == pohyby.c.mena2_id
-        ).order_by(
-            pohyby.c.akcia_id
-        )
-
-    print(f'qeury:{query}')
-    ResultSet = conn.execute(query).fetchall()
-    df = pd.DataFrame(ResultSet)
-    df.columns = ResultSet[0].keys()
-    df['Menový pár']=df['skratka']+'/'+df['skratka_1']
-    
+    df = data()    
     col1.table(df)
 
 if __name__ == "__main__":
