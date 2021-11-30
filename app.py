@@ -2,8 +2,7 @@ import streamlit as st
 import sqlalchemy as db
 from sqlalchemy.orm import aliased
 import pandas as pd
-from moduls.orm import connect_db
-from moduls.config import server, user, password, db_name
+from moduls.orm import conn, pohyby, users, kryptomeny, burzy, pomocna
 
 def main():
     print('Apka beží')
@@ -12,18 +11,6 @@ def main():
         layout="wide", 
         page_icon="", 
         initial_sidebar_state="collapsed")
-
-
-    engine = db.create_engine(f'mysql+pymysql://{user}:{password}@{server}/{db_name}')
-    connection = engine.connect()
-    # print(f'engine:{engine}, connection: {connection}')
-    metadata = db.MetaData()
-    users = db.Table('users',metadata,autoload=True, autoload_with=engine)
-    pomocna = db.Table('pomocna',metadata,autoload=True, autoload_with=engine) 
-    kryptomeny = db.Table('kryptomeny',metadata,autoload=True, autoload_with=engine) 
-    burzy = db.Table('burzy',metadata,autoload=True, autoload_with=engine) 
-    pohyby = db.Table('pohyby',metadata,autoload=True, autoload_with=engine) 
-
 
     st.title('Krypto evidencia')
     st.sidebar.subheader('hfkdshgf')
@@ -55,9 +42,11 @@ def main():
         )
 
     print(f'qeury:{query}')
-    ResultSet = connection.execute(query).fetchall()
+    ResultSet = conn.execute(query).fetchall()
     df = pd.DataFrame(ResultSet)
     df.columns = ResultSet[0].keys()
+    df['Menový pár']=df['skratka']+'/'+df['skratka_1']
+    
     col1.table(df)
 
 if __name__ == "__main__":
