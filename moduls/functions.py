@@ -26,7 +26,7 @@ def data():
             pohyby.c.akcia_id
         )
 
-    print(f'qeury:{query}')
+    # print(f'qeury:{query}')
     ResultSet = conn.execute(query).fetchall()
     df = pd.DataFrame(ResultSet)
     df.columns = ResultSet[0].keys()
