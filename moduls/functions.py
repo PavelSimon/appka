@@ -9,7 +9,7 @@ def data():
 
     query = db.select(
         [
-            # pohyby.c.kedy.label('Kedy'),
+            pohyby.c.kedy.label('Kedy'),
             pohyby.c.cena.label('Cena'),
             pomocna.c.text.label('Smer'),
             pohyby.c.za_kolko.label('Za koľko'), 
