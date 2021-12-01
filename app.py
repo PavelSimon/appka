@@ -18,7 +18,7 @@ def main():
     col1.subheader('nejaký text')
     col2.header("Nastavte parametre")
 
-    sql_text= 'SELECT pohyby.cena AS "Cena", pomocna.text AS "Smer",\
+    sql_text= 'SELECT pohyby.kedy AS Dátum, pohyby.cena AS "Cena", pomocna.text AS "Smer",\
         pohyby.za_kolko AS "Za koľko", kryptomeny_1.nazov AS "Mena 1", kryptomeny_2.nazov AS "Mena 2", kryptomeny_1.skratka AS skratka1, kryptomeny_2.skratka AS skratka2\
         FROM pomocna, pohyby JOIN kryptomeny AS kryptomeny_1 ON kryptomeny_1.id = pohyby.mena1_id JOIN kryptomeny AS kryptomeny_2 ON kryptomeny_2.id = pohyby.mena2_id\
         WHERE pohyby.akcia_id = pomocna.id ORDER BY pohyby.akcia_id'
