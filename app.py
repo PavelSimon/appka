@@ -1,8 +1,4 @@
 import streamlit as st
-# import sqlalchemy as db
-# from sqlalchemy.orm import aliased
-# import pandas as pd
-# from moduls.orm import conn, pohyby, users, kryptomeny, burzy, pomocna
 from moduls.functions import data
 
 def main():
@@ -20,7 +16,7 @@ def main():
     col1.subheader('nejaký text')
     col2.header("Nastavte parametre")
 
-    df = data()    
+    df = data()
     
     col1.table(df)
 

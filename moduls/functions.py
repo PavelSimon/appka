@@ -8,13 +8,15 @@ def data():
     mena2 = aliased(kryptomeny)
 
     query = db.select(
-        [pohyby.c.cena.label('Cena'),
-        pomocna.c.text.label('Smer'),
-        pohyby.c.za_kolko.label('Za koľko'), 
-        mena1.c.nazov.label('Mena 1'),
-        mena2.c.nazov.label('Mena 2'),
-        mena1.c.skratka.label('skratka1'),
-        mena2.c.skratka.label('skratka2')
+        [
+            # pohyby.c.kedy.label('Kedy'),
+            pohyby.c.cena.label('Cena'),
+            pomocna.c.text.label('Smer'),
+            pohyby.c.za_kolko.label('Za koľko'), 
+            mena1.c.nazov.label('Mena 1'),
+            mena2.c.nazov.label('Mena 2'),
+            mena1.c.skratka.label('skratka1'),
+            mena2.c.skratka.label('skratka2')
         ]
         ).where(
             pohyby.c.akcia_id==pomocna.c.id
@@ -26,7 +28,7 @@ def data():
             pohyby.c.akcia_id
         )
 
-    # print(f'qeury:{query}')
+    print(f'qeury:{query}')
     ResultSet = conn.execute(query).fetchall()
     df = pd.DataFrame(ResultSet)
     df.columns = ResultSet[0].keys()
