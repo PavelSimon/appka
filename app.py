@@ -20,6 +20,9 @@ def main():
     
     col1.table(df)
 
+    vstup=col1.text_input('Vstup textu')
+    col1.write(vstup)
+
 if __name__ == "__main__":
     main()
 

@@ -20,6 +20,8 @@ def data():
         ]
         ).where(
             pohyby.c.akcia_id==pomocna.c.id
+        ).where(
+            pohyby.c.user_id==5 #tuto by sa menilo po logovaní
         ).join(
             mena1, mena1.c.id == pohyby.c.mena1_id
         ).join(
@@ -28,10 +30,10 @@ def data():
             pohyby.c.akcia_id
         )
 
-    print(f'qeury:{query}')
+    # print(f'qeury:{query}')
     ResultSet = conn.execute(query).fetchall()
     df = pd.DataFrame(ResultSet)
     df.columns = ResultSet[0].keys()
     df['Menový pár']=df['skratka1']+'/'+df['skratka2']
-    
+    print('dáta vytvorené')
     return df
